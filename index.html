@@ -34,7 +34,6 @@
 <main>
   <section class="panel" aria-label="Интерактивная трехмерная модель гостиной">
     <div class="viewer-area">
-      <div class="viewer-hint">↔ Вращайте сцену мышкой или пальцем. Нажимайте на метки <strong>i</strong>.</div>
       <model-viewer id="room" src="./room.glb" alt="Трехмерная модель гостиной: диван, стол, кресло, тумба, торшер, настенная полка и растение" camera-controls auto-rotate-delay="15000" shadow-intensity="0.8" exposure="1.05" camera-orbit="32deg 69deg 7m" camera-target="0m 0.75m 0m" field-of-view="35deg" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="fixed" interaction-prompt="auto">
         <button class="hotspot" slot="hotspot-sofa" data-position="0m 1.10m -0.79m" data-normal="0m 1m 0m" aria-label="Информация о диване" title="Диван" onclick="showInfo('sofa')">i</button>
         <button class="hotspot" slot="hotspot-lamp" data-position="1.55m 1.78m -0.91m" data-normal="0m 1m 0m" aria-label="Информация о торшере" title="Торшер" onclick="showInfo('lamp')">i</button>
