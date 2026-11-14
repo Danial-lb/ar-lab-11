@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#122936">
+  <title>AR-гостиная | Лабораторная работа №11</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.1.0/dist/model-viewer.min.js"></script>
+  <style>
+    :root{font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;color:#263543;background:#edf3f3;}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,#eef6f5,#f2f0ed)}
+    header{background:#132f39;color:#fff;padding:22px max(18px,calc((100vw - 1160px)/2));display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    header .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#98d2cb;font-weight:700}h1{font-size:clamp(23px,3vw,31px);margin:4px 0 0}header p{margin:4px 0 0;color:#b2c9c9;font-size:13px}
+    main{max-width:1196px;padding:22px 18px 40px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,.82fr);gap:20px}
+    .panel{background:white;border:1px solid #dfe8e6;border-radius:20px;box-shadow:0 12px 40px #2b616116;overflow:hidden}.viewer-area{position:relative;background:radial-gradient(circle at 50% 20%,#e4eff1 0%,#d8e6e8 55%,#cbdcdd 100%)}
+    model-viewer{width:100%;height:min(66vh,630px);min-height:410px;background:transparent;--poster-color:#d4e4e6;touch-action:pan-y}
+    .hotspot{background:#fff;color:#12484a;border:2px solid #51b6aa;border-radius:50%;font-size:20px;font-weight:800;width:43px;height:43px;box-shadow:0 5px 19px #103d3a62;cursor:pointer;transition:transform .18s}
+    .hotspot:hover,.hotspot:focus-visible{transform:scale(1.16);outline:3px solid #9ee6dd}.hotspot .label{display:none}
+    .ar-action{border:0;border-radius:12px;padding:12px 18px;background:#007b71;color:white;font-size:15px;font-weight:750;box-shadow:0 7px 20px #00675d44;position:absolute;bottom:16px;right:16px;cursor:pointer}
+    .viewer-hint{position:absolute;left:16px;top:16px;background:#ffffffdb;color:#24464b;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:650;max-width:260px}
+    .viewer-footer{padding:13px 18px;background:#fff;border-top:1px solid #e7eeec;display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;font-size:13px;color:#52706d}
+    .status{display:flex;align-items:center;gap:7px}.dot{background:#f0ad4e;border-radius:50%;height:9px;width:9px;display:inline-block}.dot.ok{background:#18ab79}.dot.fail{background:#c85450}
+    .sidebar{padding:22px 20px}.eyebrow{font-size:11px;color:#1b8b7c;text-transform:uppercase;letter-spacing:.11em;font-weight:800}.sidebar h2{font-size:22px;margin:7px 0 10px}.sidebar p{color:#5e6d70;line-height:1.55;margin:6px 0 14px;font-size:14px}
+    .metric-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 19px}.metric{border:1px solid #dce8e5;background:#f2f8f6;border-radius:10px;padding:8px 10px;font-size:12px;font-weight:720;color:#366760}
+    .detail{background:#f3f8f7;border:1px solid #d7e9e5;padding:17px;border-radius:14px;min-height:160px;margin-bottom:17px}.detail h3{margin:0 0 6px;font-size:16px}.detail p{margin:3px 0 10px}.detail small{color:#607d78}.colors{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.swatch{width:35px;height:35px;border:2px solid #fff;box-shadow:0 0 0 1px #c5d6d2;border-radius:50%;cursor:pointer}.swatch[aria-pressed="true"]{outline:2px solid #234c4d;outline-offset:2px}
+    .btn-link{display:block;text-align:center;text-decoration:none;border:1px solid #c2d9d4;color:#1d6660;padding:12px 16px;border-radius:12px;font-weight:750;font-size:14px;margin-top:9px}.btn-link:hover{background:#eff9f6}
+    .warn{font-size:12px;color:#647b7b;background:#f6f8f8;padding:11px;border-radius:10px;line-height:1.55}
+    footer{max-width:1180px;margin:0 auto;padding:0 20px 24px;color:#7f9391;text-align:center;font-size:12px}
+    @media(max-width:760px){main{grid-template-columns:1fr;gap:14px;padding:12px 12px 28px}header{padding:17px 18px}.sidebar{padding:18px}model-viewer{height:58vh;min-height:350px}.viewer-hint{font-size:11px;max-width:200px}}
+  </style>
+</head>
+<body>
+<header><div><div class="eyebrow">Лабораторная работа №11 · Дополненная реальность</div><h1>Гостиная в AR</h1><p>Интерактивный 3D-макет жилого пространства</p><p style="margin-top:10px;color:#e2f2ee;font-size:13px;line-height:1.65">Группа: ИИИР-121<br>ФИО: Сафаралыев Даниал</p></div><div style="font-size:13px;color:#c3d5d5">Вариант Б · Жилое помещение</div></header>
+<main>
+  <section class="panel" aria-label="Интерактивная трехмерная модель гостиной">
+    <div class="viewer-area">
+      <div class="viewer-hint">↔ Вращайте сцену мышкой или пальцем. Нажимайте на метки <strong>i</strong>.</div>
+      <model-viewer id="room" src="./room.glb" alt="Трехмерная модель гостиной: диван, стол, кресло, тумба, торшер, настенная полка и растение" camera-controls auto-rotate-delay="15000" shadow-intensity="0.8" exposure="1.05" camera-orbit="32deg 69deg 7m" camera-target="0m 0.75m 0m" field-of-view="35deg" ar ar-modes="webxr scene-viewer quick-look" ar-placement="floor" ar-scale="fixed" interaction-prompt="auto">
+        <button class="hotspot" slot="hotspot-sofa" data-position="0m 1.10m -0.79m" data-normal="0m 1m 0m" aria-label="Информация о диване" title="Диван" onclick="showInfo('sofa')">i</button>
+        <button class="hotspot" slot="hotspot-lamp" data-position="1.55m 1.78m -0.91m" data-normal="0m 1m 0m" aria-label="Информация о торшере" title="Торшер" onclick="showInfo('lamp')">i</button>
+        <button class="ar-action" slot="ar-button" aria-label="Посмотреть комнату в дополненной реальности">📷 Смотреть в AR</button>
+      </model-viewer>
+    </div>
+    <div class="viewer-footer"><span class="status"><span class="dot" id="state-dot"></span><span id="state-text">Загрузка 3D-модели…</span></span><span>4 × 3 × 2,5 м · масштаб 1:1</span></div>
+  </section>
+  <aside class="panel sidebar">
+    <div class="eyebrow">Интерактивные точки интереса</div><h2>Исследуйте интерьер</h2>
+    <p>Выберите объект прямо на модели или нажмите название ниже. Доступны карточки с описаниями и смена цвета дивана.</p>
+    <div class="metric-row"><span class="metric">6 основных предметов</span><span class="metric">2 Hotspot</span><span class="metric">PBR-материалы</span></div>
+    <div class="detail" id="detail" aria-live="polite">
+      <h3>Выберите метку «i»</h3><p>На диване и торшере расположены интерактивные точки. Нажатие покажет информацию.</p><small>Интерактив работает в 3D-режиме и в поддерживаемом WebXR.</small>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn-link" style="flex:1;background:#fff;cursor:pointer" onclick="showInfo('sofa')">🛋 Диван</button><button class="btn-link" style="flex:1;background:#fff;cursor:pointer" onclick="showInfo('lamp')">💡 Торшер</button></div>
+    <a class="btn-link" href="./qr.html">▦ Открыть QR-код проекта</a>
+    <p class="warn">AR запускается только на совместимом смартфоне после публикации сайта по HTTPS. В режиме Scene Viewer и Quick Look информационные метки могут быть недоступны — они полноценно работают на странице и в режиме WebXR.</p>
+  </aside>
+</main>
+<footer>Учебный проект · Формат glTF/GLB · World / Surface Tracking</footer>
+<script>
+  const viewer=document.querySelector('#room');
+  let selected='#357B78';
+  const dot=document.querySelector('#state-dot'), state=document.querySelector('#state-text');
+  viewer.addEventListener('load',()=>{dot.className='dot ok';state.textContent='Модель загружена. Интерактив активен.';});
+  viewer.addEventListener('error',()=>{dot.className='dot fail';state.textContent='Ошибка загрузки. Запустите сайт через HTTPS или локальный сервер.';});
+  function changeSofa(hex){
+    selected=hex;
+    if(viewer.model?.materials){
+      let found=0;
+      for(const mat of viewer.model.materials){if(mat.name.includes('Sofa_Fabric')){mat.pbrMetallicRoughness.setBaseColorFactor(hex);found++;}}
+      if(!found){console.warn('Материал Sofa_Fabric не найден. Доступные:',viewer.model.materials.map(m=>m.name));}
+    }
+    for(const swatch of document.querySelectorAll('.swatch'))swatch.setAttribute('aria-pressed',swatch.dataset.color===hex?'true':'false');
+  }
+  function showInfo(item){
+    const box=document.querySelector('#detail');
+    if(item==='sofa'){
+      box.innerHTML=`<h3>🛋 Диван «Комфорт»</h3><p>Размер: <b>175 × 77 × 95 см</b>. Двухместный диван с мягкими подушками, подходит для зоны отдыха.</p><small>Нажмите цвет, чтобы изменить материал дивана:</small><div class="colors"><button class="swatch" data-color="#357B78" style="background:#357B78" aria-label="Бирюзовый диван" onclick="changeSofa('#357B78')"></button><button class="swatch" data-color="#BD775F" style="background:#BD775F" aria-label="Терракотовый диван" onclick="changeSofa('#BD775F')"></button><button class="swatch" data-color="#7B87A9" style="background:#7B87A9" aria-label="Синий диван" onclick="changeSofa('#7B87A9')"></button></div>`;
+      changeSofa(selected);
+    }else{
+      box.innerHTML='<h3>💡 Напольный торшер</h3><p>Высота: <b>168 см</b>. Металлическая опора и текстильный абажур. Предназначен для локального освещения рядом с диваном.</p><small>Тип освещения: декоративный акцент. Цена (учебная): 18 000 ₸.</small>';
+    }
+  }
+  window.showInfo=showInfo;window.changeSofa=changeSofa;
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#132f39">
+  <title>QR-код AR-проекта | Лабораторная №11</title>
+  <style>
+    * {box-sizing:border-box}
+    body {font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; min-height:100vh; margin:0; padding:24px 14px; display:flex; justify-content:center; align-items:center; background:linear-gradient(140deg,#eaf3f1,#f5f5f4); color:#17343b}
+    main {width:100%;max-width:520px;background:#fff;border-radius:22px;border:1px solid #dae9e5;box-shadow:0 14px 44px #21474321; padding:30px;text-align:center}
+    .eyebrow {color:#1c7067;font-size:12px;letter-spacing:.11em;text-transform:uppercase;font-weight:750}
+    h1 {font-size:clamp(25px,5vw,31px);margin:8px 0 8px}
+    p {color:#52696b;line-height:1.55;margin:8px 0 15px}
+    .qr {display:block;width:min(100%,302px);height:auto;image-rendering:pixelated;margin:18px auto 4px;border:1px solid #e3ebeb;border-radius:12px}
+    .address {display:block;padding:13px 10px;background:#f2f8f7;border:1px solid #e0ece9;border-radius:10px; color:#136a60;overflow-wrap:anywhere;word-break:break-word; text-decoration:none;font-weight:650;font-size:14px}
+    .actions {display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:17px}
+    .btn {display:inline-block;border:1px solid #bfd7d1;border-radius:10px;padding:11px 16px;color:#135e58;background:#eef8f5;text-decoration:none;font-weight:700;font-size:14px;cursor:pointer}
+    .btn.primary {color:white;background:#146f66;border-color:#146f66}
+    .credits {border-top:1px solid #e3ecea;padding-top:16px;margin-top:22px;color:#405c60;font-size:14px;text-align:left;line-height:1.8}
+    .note {font-size:12px;color:#728784;margin:17px 0 0}
+    @media(max-width:440px){main{padding:22px 18px}}
+    @media print {body{background:white}main{box-shadow:none;border:none;padding:10px}.actions,.note{display:none}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Лабораторная работа №11 · WebAR</div>
+  <h1>QR-код AR-гостиной</h1>
+  <p>Наведите камеру смартфона на QR-код, чтобы открыть опубликованный 3D-проект.</p>
+  <img class="qr" alt="QR-код для перехода на опубликованную AR-гостиную" width="302" height="302" src="data:image/png;base64,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">
+  <p>Прямая ссылка на проект:</p>
+  <a class="address" href="https://danial-lb.github.io/ar-lab-11/" target="_blank" rel="noopener noreferrer">https://danial-lb.github.io/ar-lab-11/</a>
+  <div class="actions">
+    <a class="btn primary" href="https://danial-lb.github.io/ar-lab-11/" target="_blank" rel="noopener noreferrer">Открыть AR-проект</a>
+    <a class="btn" href="./QR_AR_gostinaya.png" download="QR_AR_gostinaya.png" id="save-qr">Сохранить QR (PNG)</a>
+    <a class="btn" href="./index.html">Назад к 3D-комнате</a>
+  </div>
+  <div class="credits"><div>Группа: <b>ИИИР-121</b></div><div>ФИО: <b>Сафаралыев Даниал</b></div></div>
+  <p class="note"></p>
+</main>
+<script>
+// Embedded QR image is complete; this fallback lets a user save it even if the PNG was not uploaded.
+document.getElementById('save-qr').addEventListener('click', function(event) {
+  // If the server lacks the PNG, preserve the ability to save using the embedded image.
+  event.preventDefault();
+  const a = document.createElement('a');
+  a.href = document.querySelector('.qr').src;
+  a.download = 'QR_AR_gostinaya.png';
+  a.click();
+});
+</script>
+</body>
+</html>
